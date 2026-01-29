@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="ShoppingCart.Core/ShoppingCart.Core.csproj" />
+  <Project Path="ShoppingCart.UnitTests.Console/ShoppingCart.UnitTests.Console.csproj" />
   <Project Path="ShoppingCart.UnitTests/ShoppingCart.UnitTests.csproj" />
 </Solution>
