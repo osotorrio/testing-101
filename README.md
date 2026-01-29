@@ -16,3 +16,11 @@ that a unit refers to a method...It can be as small as a method, or as big as se
 # What is an integration test then?
 
 Is an **automated piece of code** that invokes a unit of work **without having full control over all** of it. Like network servers, time, and so on.
+
+# What are the three types of unit tests?
+
+1. **Return value**. You call a method that return some expected value. This is assertion on the returned value.
+
+2. **State change based**. You call a method that changes the state of the object. This is assertion on the changed value in public property.
+
+3. **Interaction based**. You call a method that makes an external call. This is assertion on a fake object method being call correctly.
