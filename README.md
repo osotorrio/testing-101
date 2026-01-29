@@ -39,5 +39,5 @@ It is an **automated piece of code** that invokes a unit of work **without havin
 
 ## Can stub and mock objects be used together?
 
-![Stub and Mock Objects](IMages/stub-and-mock.png)
+![Stub and Mock Objects](Images/stub-and-mock.png)
 
