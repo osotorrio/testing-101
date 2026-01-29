@@ -21,6 +21,23 @@ It is an **automated piece of code** that invokes a unit of work **without havin
 
 1. **Return value**. You call a method that return some expected value. This is assertion on the returned value.
 
-2. **State based**. You call a method that changes the state of the object. This is assertion on the changed value in public property.
+2. **State-based**. You call a method that changes the state of the object. This is assertion on the changed value in public property.
 
-3. **Interaction based**. You call a method that makes an external call. This is assertion on a fake object method being called correctly.
+3. **Interaction**. You call a method that makes an external call. This is assertion on a fake object method being called correctly.
+
+## What are the types of isolation objects in an unit test?
+
+1. A **fake object** is a generic term to describe either a stub or a mock object.
+
+2. A **mock object** is a fake object in the system that breaks a dependency. It decides whether the test has passed or failed.
+
+![Stub Object](Images/mock-object.png)
+
+3. A **stub object** is a fake object in the stytem that breaks a dependency. It does not decides if the test pass or fail.
+
+![Mock Object](Images/stub-object.png)
+
+## Can stub and mock objects be used together?
+
+![Stub and Mock Objects](IMages/stub-and-mock.png)
+
