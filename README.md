@@ -1,3 +1,7 @@
+## What is testing?
+
+It is a tool to design your code. Or even your architecture depending on the scope. It is a first citizen thought about the problem to solve.
+
 ## What are automated tests?
 
 It is a technical application that test your business application. That's it.
