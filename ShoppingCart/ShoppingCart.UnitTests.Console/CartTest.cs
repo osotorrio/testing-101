@@ -48,7 +48,7 @@ namespace ShoppingCart.UnitTests.Console
                 throw new Exception($"Test failure - DiscountService not called with expected customer Id");
             }
 
-            Console.WriteLine($"Test was successful - {nameof(CheckoutAsync_ShouldCallDiscountService_WhenCheckingOut)}");
+            System.Console.WriteLine($"Test was successful - {nameof(CheckoutAsync_ShouldCallDiscountService_WhenCheckingOut)}");
         }
     }
 
@@ -59,7 +59,7 @@ namespace ShoppingCart.UnitTests.Console
         public async Task<decimal> GetDiscountPercentageAsync(string customerId)
         {
             CustomerId = customerId;
-            return Task.FromResult(0);
+            return await Task.FromResult<decimal>(0);
         }
     }
 
@@ -67,7 +67,7 @@ namespace ShoppingCart.UnitTests.Console
     {
         public Task SaveAsync(string customerId, List<CartItem> items, decimal total)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }
