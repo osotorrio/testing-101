@@ -50,6 +50,44 @@ namespace ShoppingCart.UnitTests.Console
 
             System.Console.WriteLine($"Test was successful - {nameof(CheckoutAsync_ShouldCallDiscountService_WhenCheckingOut)}");
         }
+
+        public static async Task CheckoutAsync_ShouldCallOrderRepository_WhenCheckingOut()
+        {
+            var fakeDiscountService = new FakeDiscountService();
+            var fakeOrderRepository = new FakeOrderRepository();
+
+            // Create Cart
+            Cart cart = new Cart(fakeDiscountService, fakeOrderRepository);
+
+            // Add Item in Cart
+            cart.AddItem("P001", "Product 1", 2, 10.0m);
+
+            var expectedCustomerId = "TestCustomerId";
+            var finalTotal = await cart.CheckoutAsync(expectedCustomerId);
+
+            // Assert
+            if (fakeOrderRepository.CustomerId != expectedCustomerId)
+            {
+                throw new Exception($"Test failure - OrderRepository not called with expected customer Id");
+            }
+
+            if (cart.ItemCount != fakeOrderRepository.Items.Count)
+            {
+                throw new Exception($"Test failure - OrderRepository not called with expected items");
+            }
+
+            if (cart.Items.First().ProductId != fakeOrderRepository.Items.First().ProductId)
+            {
+                throw new Exception("Test failure - OrderRepository not called with expected items");
+            }
+
+            if (finalTotal != fakeOrderRepository.Total)
+            {
+                throw new Exception("Test failure - OrderRepository total is not called with expected total");
+            }
+
+            System.Console.WriteLine($"Test was successful - {nameof(CheckoutAsync_ShouldCallOrderRepository_WhenCheckingOut)}");
+        }
     }
 
     public class FakeDiscountService : IDiscountService
@@ -65,6 +103,10 @@ namespace ShoppingCart.UnitTests.Console
 
     public class FakeOrderRepository : IOrderRepository
     {
+        public string CustomerId { get; set; }
+        public List<CartItem> Items { get; set; }
+        public decimal Total { get; set; }
+
         public Task SaveAsync(string customerId, List<CartItem> items, decimal total)
         {
             return Task.CompletedTask;
