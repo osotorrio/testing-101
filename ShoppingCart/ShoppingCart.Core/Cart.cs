@@ -66,7 +66,7 @@ public class Cart
         var item = _items.FirstOrDefault(i => i.ProductId == productId);
         if (item != null)
         {
-            _items.Remove(item);
+            //_items.Remove(item);
         }
     }
 

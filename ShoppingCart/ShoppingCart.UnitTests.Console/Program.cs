@@ -1,2 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+
+using ShoppingCart.UnitTests.Console;
+
+Console.WriteLine("Test running - to please Oscar");
+CartTest.RemoveItem_ShouldRemoveItemAndLeaveCartEmpty_WhenCartOnlyHasOneItem();
+Console.ReadKey();
