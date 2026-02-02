@@ -4,4 +4,5 @@ using ShoppingCart.UnitTests.Console;
 
 Console.WriteLine("Test running - to please Oscar");
 CartTest.RemoveItem_ShouldRemoveItemAndLeaveCartEmpty_WhenCartOnlyHasOneItem();
+CartTest.CheckoutAsync_ShouldCallDiscountService_WhenCheckingOut();
 Console.ReadKey();

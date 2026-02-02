@@ -27,13 +27,39 @@ namespace ShoppingCart.UnitTests.Console
 
             System.Console.WriteLine($"Test was successful - {nameof(RemoveItem_ShouldRemoveItemAndLeaveCartEmpty_WhenCartOnlyHasOneItem)}");
         }
+
+        public static async Task CheckoutAsync_ShouldCallDiscountService_WhenCheckingOut()
+        {
+            var fakeDiscountService = new FakeDiscountService();
+            var fakeOrderRepository = new FakeOrderRepository();
+
+            // Create Cart
+            Cart cart = new Cart(fakeDiscountService, fakeOrderRepository);
+
+            // Add Item in Cart
+            cart.AddItem("P001", "Product 1", 2, 10.0m);
+
+            var expectedCustomerId = "TestCustomerId";
+            await cart.CheckoutAsync(expectedCustomerId);
+
+            // Assert
+            if(fakeDiscountService.CustomerId != expectedCustomerId)
+            {
+                throw new Exception($"Test failure - DiscountService not called with expected customer Id");
+            }
+
+            Console.WriteLine($"Test was successful - {nameof(CheckoutAsync_ShouldCallDiscountService_WhenCheckingOut)}");
+        }
     }
 
     public class FakeDiscountService : IDiscountService
     {
-        public Task<decimal> GetDiscountPercentageAsync(string customerId)
+        public string CustomerId { get; set; }
+
+        public async Task<decimal> GetDiscountPercentageAsync(string customerId)
         {
-            throw new NotImplementedException();
+            CustomerId = customerId;
+            return Task.FromResult(0);
         }
     }
 
